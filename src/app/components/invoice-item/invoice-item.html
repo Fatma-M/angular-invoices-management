@@ -1,0 +1,29 @@
+<a class="invoice flex">
+  <div class="left flex">
+    <span class="tracking-number">#{{ invoice.invoiceId }}</span>
+    <span class="due-date">{{ invoice.paymentDueDate }}</span>
+    <span class="person">{{ invoice.clientName }}</span>
+  </div>
+  <div class="right flex">
+    <span class="price">${{ invoice.invoiceTotal }}</span>
+    <div
+      class="status-button flex"
+      [ngClass]="{
+          paid: invoice.invoicePaid,
+          draft: invoice.invoiceDraft,
+          pending: invoice.invoicePending,
+        }"
+    >
+      @if(invoice.invoicePaid) {
+      <span>Paid</span>
+      } @if(invoice.invoiceDraft) {
+      <span>Draft</span>
+      } @if(invoice.invoicePending) {
+      <span>Pending</span>
+      }
+    </div>
+    <div class="icon">
+      <img src="../../../assets/icon-arrow-right.svg" alt="arrow right icon" />
+    </div>
+  </div>
+</a>

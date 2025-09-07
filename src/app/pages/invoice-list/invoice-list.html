@@ -5,7 +5,12 @@
       <span>There are {{ invoices().length }} total invoices</span>
     </div>
     <div class="right flex">
-      <div class="filter flex" (click)="toggleFilterMenu()">
+      <div
+        class="filter flex"
+        (click)="toggleFilterMenu()"
+        appClickOutside
+        (appClickOutside)="filterMenuOpened.set(false)"
+      >
         <span> Filter by status {{ filteredInvoice() || '' }} </span>
         <img src="../../../assets/icon-arrow-down.svg" alt="arrow down" />
         @if(filterMenuOpened()) {

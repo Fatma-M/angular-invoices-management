@@ -1,12 +1,25 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { NavbarComponent } from './components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NavbarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('angular-invoices-management');
+export class App implements OnInit {
+  mobile = signal(false);
+
+  ngOnInit(): void {
+    window.addEventListener('resize', () => this.onCheckScreen());
+    this.onCheckScreen();
+  }
+
+  /**
+   * @description method for check screen size
+   * @returns void
+   */
+  onCheckScreen(): void {
+    this.mobile.set(window.innerWidth < 768);
+  }
 }

@@ -3,12 +3,15 @@ import { Invoice } from '../../interfaces/invoice';
 import { StoreService } from '../../services/store';
 import { Subject, takeUntil } from 'rxjs';
 import { FilterMenuItems } from '../../enums/filter';
+import { InvoiceItem } from '../../components/invoice-item/invoice-item';
+import { ClickOutsideDirective } from '../../directives/click-outside';
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
   templateUrl: './invoice-list.html',
   styleUrl: './invoice-list.scss',
+  imports: [InvoiceItem, ClickOutsideDirective],
 })
 export class InvoiceList implements OnInit, OnDestroy {
   private _destroy$ = new Subject();

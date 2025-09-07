@@ -34,7 +34,7 @@
   @if(filteredInvoices().length) {
   <div>
     @for( invoice of filteredInvoices(); track invoice.invoiceId) {
-    <p>{{ invoice.clientName }}</p>
+    <app-invoice-item [invoice]="invoice" />
     }
   </div>
   } @if(!filteredInvoices().length) {

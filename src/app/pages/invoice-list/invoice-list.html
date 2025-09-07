@@ -1,0 +1,42 @@
+<div class="home container">
+  <div class="header flex">
+    <div class="left flex flex-column">
+      <h1>Invoices</h1>
+      <span>There are {{ invoices().length }} total invoices</span>
+    </div>
+    <div class="right flex">
+      <div class="filter flex" (click)="toggleFilterMenu()">
+        <span> Filter by status {{ filteredInvoice() || '' }} </span>
+        <img src="../../../assets/icon-arrow-down.svg" alt="arrow down" />
+        @if(filterMenuOpened()) {
+        <ul class="filter-menu">
+          <li (click)="filterData(filterMenuItems.Draft)">Draft</li>
+          <li (click)="filterData(filterMenuItems.Pending)">Pending</li>
+          <li (click)="filterData(filterMenuItems.Paid)">Paid</li>
+          <li (click)="filterData(filterMenuItems.Clear)">Clear Filter</li>
+        </ul>
+        }
+      </div>
+      <div class="button flex" (click)="newInvoice()">
+        <div class="inner-button flex">
+          <img src="../../../assets/icon-plus.svg" alt="plus icon" />
+        </div>
+        <span>New Invoice</span>
+      </div>
+    </div>
+  </div>
+
+  @if(filteredInvoices().length) {
+  <div>
+    @for( invoice of filteredInvoices(); track invoice.invoiceId) {
+    <p>{{ invoice.clientName }}</p>
+    }
+  </div>
+  } @if(!filteredInvoices().length) {
+  <div class="empty flex flex-column">
+    <img src="../../../assets/illustration-empty.svg" alt="illustration" />
+    <h3>There is nothing here..</h3>
+    <p>Create a new invoice by clicking the new invoice button and get started</p>
+  </div>
+  }
+</div>

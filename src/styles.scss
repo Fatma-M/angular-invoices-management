@@ -44,3 +44,14 @@
 .flex-column {
   flex-direction: column;
 }
+
+.container {
+  width: 100%;
+  padding: 40px 10px;
+  max-width: 850px;
+  margin: 0 auto;
+
+  @media (min-width: 900px) {
+    padding-top: 72px;
+  }
+}

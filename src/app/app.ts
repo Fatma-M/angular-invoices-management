@@ -1,9 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from './components/navbar/navbar';
+import { InvoiceList } from './pages/invoice-list/invoice-list';
 
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, InvoiceList],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

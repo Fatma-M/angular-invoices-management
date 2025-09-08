@@ -1,0 +1,97 @@
+@if(invoiceData()) {
+<div class="container invoice-view">
+  <a routerLink="/" class="nav-link flex">
+    <img src="../../../assets/icon-arrow-left.svg" alt="go back link" /> Go Back
+  </a>
+  <div class="header flex">
+    <div class="left flex">
+      <div
+        class="status-button flex"
+        [ngClass]="{
+              paid: invoiceData()?.invoicePaid,
+              draft: invoiceData()?.invoiceDraft,
+              pending: invoiceData()?.invoicePending,
+            }"
+      >
+        @if (invoiceData()?.invoicePaid) {
+        <span>Paid</span>
+        } @if(invoiceData()?.invoiceDraft) {
+        <span> Draft</span>
+        } @if(invoiceData()?.invoicePending) {
+        <span>Pending</span>
+        }
+      </div>
+    </div>
+    <div class="right flex">
+      <button class="dark-purple" (click)="onEditInvoice()">Edit</button>
+      <button (click)="onDeleteInvoice()" class="red">Delete</button>
+      @if(invoiceData()?.invoicePending) {
+      <button class="green" (click)="onChangeInvoiceStatus(invoiceStatus.Paid)">
+        Mark as Paid
+      </button>
+      } @else {
+      <button (click)="onChangeInvoiceStatus(invoiceStatus.Pending)" class="orange">
+        Mark as Pending
+      </button>
+      }
+    </div>
+  </div>
+
+  <div class="invoice-details flex flex-column">
+    <div class="top flex">
+      <div class="left flex flex-column">
+        <p><span>#</span>{{ invoiceData()?.invoiceId }}</p>
+        <p>{{ invoiceData()?.productDescription }}</p>
+      </div>
+      <div class="right flex flex-column">
+        <p>{{ invoiceData()?.billerStreetAddress }}</p>
+        <p>{{ invoiceData()?.billerCity }}</p>
+        <p>{{ invoiceData()?.billerZipCode }}</p>
+        <p>{{ invoiceData()?.billerCountry }}</p>
+      </div>
+    </div>
+    <div class="middle flex">
+      <div class="payment flex flex-column">
+        <h4>Invoice Date</h4>
+        <p>{{ invoiceData()?.invoiceDate }}</p>
+        <h4>Payment Date</h4>
+        <p>{{ invoiceData()?.paymentDueDate }}</p>
+      </div>
+      <div class="bill flex flex-column">
+        <h4>Bill To</h4>
+        <p>{{ invoiceData()?.clientName }}</p>
+        <p>{{ invoiceData()?.clientStreetAddress }}</p>
+        <p>{{ invoiceData()?.clientCity }}</p>
+        <p>{{ invoiceData()?.clientZipCode }}</p>
+        <p>{{ invoiceData()?.clientCountry }}</p>
+      </div>
+      <div class="send-to flex flex-column">
+        <h4>Sent To</h4>
+        <p>{{ invoiceData()?.clientEmail }}</p>
+      </div>
+    </div>
+    <div class="bottom flex flex-column">
+      <div class="billing-items">
+        <div class="headings flex">
+          <p>Item Name</p>
+          <p>QTY</p>
+          <p>Price</p>
+          <p>Total</p>
+        </div>
+        @for(item of invoiceData()?.invoiceItemList; track item.itemName) {
+        <div class="item flex">
+          <p>{{ item.itemName }}</p>
+          <p>{{ item.qty }}</p>
+          <p>{{ item.price }}</p>
+          <p>{{ item.total }}</p>
+        </div>
+        }
+      </div>
+      <div class="total flex">
+        <p>Amount Due</p>
+        <p>{{ invoiceData()?.invoiceTotal }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+}

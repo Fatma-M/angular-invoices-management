@@ -17,9 +17,16 @@ export interface Invoice {
   paymentDueDateUnix: number;
   paymentDueDate: string;
   productDescription: string;
-  invoiceItemList: [];
+  invoiceItemList: InvoiceListItem[];
   invoiceTotal: number;
   invoicePending: boolean;
   invoiceDraft: boolean;
   invoicePaid: boolean;
+}
+
+export interface InvoiceListItem {
+  itemName: string;
+  qty: string;
+  price: string;
+  total: string;
 }

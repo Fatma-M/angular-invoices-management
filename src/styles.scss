@@ -100,3 +100,34 @@
   color: #dfe3fa;
   background-color: rgba(223, 227, 250, 0.1);
 }
+
+button,
+.button {
+  cursor: pointer;
+  padding: 16px 24px;
+  border-radius: 30px;
+  border: none;
+  font-size: 12px;
+  margin-right: 8px;
+  color: #fff;
+}
+
+.dark-purple {
+  background-color: #252945;
+}
+
+.red {
+  background-color: #ec5757;
+}
+
+.purple {
+  background-color: #7c5dfa;
+}
+
+.green {
+  background-color: #33d69f;
+}
+
+.orange {
+  background-color: #ff8f00;
+}

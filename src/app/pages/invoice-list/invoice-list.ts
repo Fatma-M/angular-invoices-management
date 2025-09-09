@@ -6,13 +6,14 @@ import { FilterMenuItems } from '../../enums/filter';
 import { InvoiceItem } from '../../components/invoice-item/invoice-item';
 import { ClickOutsideDirective } from '../../directives/click-outside';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
   templateUrl: './invoice-list.html',
   styleUrl: './invoice-list.scss',
-  imports: [InvoiceItem, ClickOutsideDirective],
+  imports: [InvoiceItem, ClickOutsideDirective, MatProgressSpinnerModule],
 })
 export class InvoiceList implements OnInit, OnDestroy {
   private _destroy$ = new Subject();
@@ -21,6 +22,7 @@ export class InvoiceList implements OnInit, OnDestroy {
   filteredInvoices = signal<Invoice[]>([]);
   filterMenuOpened = signal<boolean>(false);
   filteredInvoice = signal('');
+  loading = signal(true);
 
   constructor(private _storeService: StoreService, private _route: Router) {}
 
@@ -36,9 +38,17 @@ export class InvoiceList implements OnInit, OnDestroy {
     this._storeService
       .getInvoices()
       .pipe(takeUntil(this._destroy$))
-      .subscribe((res: Invoice[]) => {
-        this.invoices.set(res);
-        this.filteredInvoices.set(res);
+      .subscribe({
+        next: (res: Invoice[]) => {
+          this.invoices.set(res);
+          this.filteredInvoices.set(res);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          this.loading.set(false);
+        },
       });
   }
 

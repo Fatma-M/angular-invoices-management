@@ -31,7 +31,12 @@
     </div>
   </div>
 
-  @if(filteredInvoices().length) {
+  @if(loading()) {
+  <div class="loading-spinner">
+    <mat-progress-spinner mode="indeterminate" diameter="50" color="primary">
+    </mat-progress-spinner>
+  </div>
+  } @else { @if(filteredInvoices().length) {
   <div>
     @for( invoice of filteredInvoices(); track invoice.invoiceId) {
     <app-invoice-item [invoice]="invoice" />
@@ -43,5 +48,5 @@
     <h3>There is nothing here..</h3>
     <p>Create a new invoice by clicking the new invoice button and get started</p>
   </div>
-  }
+  } }
 </div>

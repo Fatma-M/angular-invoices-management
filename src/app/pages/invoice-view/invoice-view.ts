@@ -42,7 +42,9 @@ export class InvoiceView implements OnInit, OnDestroy {
    * @description method for handle edit invoice
    * @returns void
    */
-  onEditInvoice(): void {}
+  onEditInvoice(): void {
+    this._router.navigate(['/invoice/edit', this.invoiceData()!.invoiceId]);
+  }
 
   /**
    * @description method for handle delete invoice

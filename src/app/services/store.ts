@@ -1,9 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 import { from, map, Observable, take } from 'rxjs';
-import { collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import db from '../firebase/firebaseinit';
 import { Invoice } from '../interfaces/invoice';
 import { InvoiceStatus } from '../enums/invoice-status';
+import { uid } from 'uid';
 
 @Injectable({
   providedIn: 'root',
@@ -59,6 +60,34 @@ export class StoreService {
         invoiceDraft: false,
       })
     ).pipe(take(1));
+  }
+
+  /**
+   * @description method to handle create new invoice
+   * @param invoiceData
+   * @returns any - firebase return a special type for their endpoints
+   */
+  createInvoice(invoiceData: Invoice): Observable<any> {
+    const invoicesCollection = collection(db, 'invoices');
+
+    return from(
+      addDoc(invoicesCollection, {
+        ...invoiceData,
+        invoiceId: uid(6),
+        invoicePaid: null,
+      })
+    ).pipe(take(1));
+  }
+
+  /**
+   * @description method to handle update invoice
+   * @param {string} docId
+   * @param invoiceData
+   * @returns {Observable<void>} firebase endpoint returns nothing when it's successful
+   */
+  updateInvoice(docId: string, invoiceData: Invoice): Observable<void> {
+    const invoiceRef = doc(db, 'invoices', docId);
+    return from(updateDoc(invoiceRef, { ...invoiceData })).pipe(take(1));
   }
 
   /**

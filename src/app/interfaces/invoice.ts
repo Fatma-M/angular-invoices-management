@@ -25,8 +25,9 @@ export interface Invoice {
 }
 
 export interface InvoiceListItem {
+  id: string;
   itemName: string;
-  qty: string;
-  price: string;
-  total: string;
+  qty: string | number;
+  price: string | number;
+  total: string | number;
 }

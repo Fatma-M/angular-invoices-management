@@ -1,0 +1,136 @@
+<div class="invoice-wrap flex flex-column">
+  <form [formGroup]="invoiceForm" class="invoice-content" (ngSubmit)="onSubmit()">
+    <h1>{{ !editInvoice() ? 'New ' : 'Edit ' }} Invoice</h1>
+
+    <div class="bill-from flex flex-column">
+      <h4>Bill From</h4>
+      <div class="input flex flex-column">
+        <label>Street Address</label>
+        <input formControlName="billerStreetAddress" type="text" required />
+      </div>
+
+      <div class="location-details flex">
+        <div class="input flex flex-column">
+          <label>City</label>
+          <input formControlName="billerCity" placeholder="City" />
+        </div>
+        <div class="input flex flex-column">
+          <label>Zip Code</label>
+          <input formControlName="billerZipCode" placeholder="Zip Code" />
+        </div>
+        <div class="input flex flex-column">
+          <label>Country</label>
+          <input formControlName="billerCountry" placeholder="Country" />
+        </div>
+      </div>
+    </div>
+
+    <div class="bill-to flex flex-column">
+      <h4>Bill To</h4>
+      <div class="input flex flex-column">
+        <label>Client's Name</label>
+        <input formControlName="clientName" placeholder="Client's Name" />
+      </div>
+      <div class="input flex flex-column">
+        <label>Client's Email</label>
+        <input formControlName="clientEmail" placeholder="Client's Email" />
+      </div>
+      <div class="input flex flex-column">
+        <label>Street Address</label>
+        <input formControlName="clientStreetAddress" placeholder="Street Address" />
+      </div>
+      <div class="location-details flex">
+        <div class="input flex flex-column">
+          <label>City</label>
+          <input formControlName="clientCity" placeholder="City" />
+        </div>
+        <div class="input flex flex-column">
+          <label>Zip Code</label>
+          <input formControlName="clientZipCode" placeholder="Zip Code" />
+        </div>
+        <div class="input flex flex-column">
+          <label>Country</label>
+          <input formControlName="clientCountry" placeholder="Country" />
+        </div>
+      </div>
+    </div>
+
+    <div class="invoice-work flex flex-column">
+      <div class="payment flex">
+        <div class="input flex flex-column">
+          <label>Invoice Date</label>
+          <input formControlName="invoiceDate" />
+        </div>
+        <div class="input flex flex-column">
+          <label>Payment Due</label>
+          <input formControlName="paymentDueDate" />
+        </div>
+      </div>
+
+      <div class="input flex flex-column">
+        <label>Payment Terms</label>
+        <select formControlName="paymentTerms">
+          <option value="30">Net 30 Days</option>
+          <option value="60">Net 60 Days</option>
+        </select>
+      </div>
+
+      <div class="input flex flex-column">
+        <label>Product Description</label>
+        <input formControlName="productDescription" placeholder="Product Description" />
+      </div>
+
+      <div formArrayName="invoiceItemList" class="work-items">
+        <h3>Item List</h3>
+        <table class="item-list">
+          <tr class="table-heading flex">
+            <th class="item-name">Item Name</th>
+            <th class="qty">Qty</th>
+            <th class="price">Price</th>
+            <th class="total">Total</th>
+          </tr>
+          @for(item of invoiceItemList.controls; track i; let i = $index ) {
+          <tr class="table-items flex" [formGroupName]="i">
+            <td class="item-name">
+              <input type="text" formControlName="itemName" placeholder="Item Name" />
+            </td>
+            <td class="qty"><input formControlName="qty" type="number" /></td>
+            <td class="price"><input formControlName="price" type="number" /></td>
+            <td class="total flex">
+              <span>{{ item.value.qty * item.value.price | currency }}</span>
+            </td>
+            <img
+              src="../../../assets/icon-delete.svg"
+              alt="delete"
+              class="delete-icon"
+              (click)="onRemoveItem(i)"
+            />
+          </tr>
+
+          }
+        </table>
+
+        <div class="flex button" (click)="onAddItem()">
+          <img src="../../../assets/icon-plus.svg" alt="add" />
+          Add New Item
+        </div>
+      </div>
+    </div>
+
+    <div class="save flex">
+      <div class="left">
+        <button class="red" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+      <div class="right flex">
+        @if(!editInvoice()) {
+        <button class="dark-purple" type="button" (click)="onSubmit(invoiceStatus.Draft)">
+          Save Draft
+        </button>
+        <button class="purple" type="submit">Create Invoice</button>
+        } @else {
+        <button class="purple" type="submit">Update Invoice</button>
+        }
+      </div>
+    </div>
+  </form>
+</div>

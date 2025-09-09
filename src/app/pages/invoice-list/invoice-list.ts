@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { FilterMenuItems } from '../../enums/filter';
 import { InvoiceItem } from '../../components/invoice-item/invoice-item';
 import { ClickOutsideDirective } from '../../directives/click-outside';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-list',
@@ -21,7 +22,7 @@ export class InvoiceList implements OnInit, OnDestroy {
   filterMenuOpened = signal<boolean>(false);
   filteredInvoice = signal('');
 
-  constructor(private _storeService: StoreService) {}
+  constructor(private _storeService: StoreService, private _route: Router) {}
 
   ngOnInit(): void {
     this.getInvoices();
@@ -81,7 +82,9 @@ export class InvoiceList implements OnInit, OnDestroy {
    * @description method for create new invoice
    * @returns {void} void
    */
-  newInvoice(): void {}
+  newInvoice(): void {
+    this._route.navigate(['/invoice/new']);
+  }
 
   ngOnDestroy(): void {
     this._destroy$.next(true);

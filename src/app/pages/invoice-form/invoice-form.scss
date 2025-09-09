@@ -1,0 +1,152 @@
+.invoice-wrap {
+  background-color: transparent;
+  width: 100%;
+
+  .invoice-content {
+    position: relative;
+    padding: 56px;
+    max-width: 90%;
+    width: 100%;
+    color: #fff;
+    background-color: #141625;
+    margin: 0 auto;
+
+    h1 {
+      margin-bottom: 48px;
+      color: #fff;
+    }
+
+    h3 {
+      margin-bottom: 16px;
+      font-size: 18px;
+      color: #777f98;
+    }
+
+    h4 {
+      color: #7c5dfa;
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
+    .bill-to,
+    .bill-from {
+      margin-bottom: 48px;
+
+      .location-details {
+        gap: 16px;
+
+        div {
+          flex: 1;
+        }
+      }
+    }
+
+    .invoice-work {
+      .payment {
+        gap: 24px;
+        div {
+          flex: 1;
+        }
+      }
+
+      .work-items {
+        .item-list {
+          width: 100%;
+
+          .table-heading,
+          .table-items {
+            gap: 16px;
+            font-size: 12px;
+
+            .item-name {
+              flex-basis: 50%;
+            }
+            .qty {
+              flex-basis: 10%;
+            }
+            .price {
+              flex-basis: 20%;
+            }
+            .total {
+              flex-basis: 20%;
+              align-self: center;
+            }
+          }
+
+          .table-heading {
+            margin-bottom: 16px;
+
+            th {
+              text-align: left;
+            }
+          }
+
+          .table-items {
+            position: relative;
+            margin-bottom: 24px;
+
+            img {
+              position: absolute;
+              top: 15px;
+              right: 0;
+              width: 12px;
+              height: 16px;
+              cursor: pointer;
+
+              &:hover {
+                transform: scale(1.2);
+              }
+            }
+          }
+        }
+
+        .button {
+          color: #fff;
+          background-color: #252945;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+
+          img {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    .save {
+      margin-top: 60px;
+
+      div {
+        flex: 1;
+      }
+
+      .right {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .input {
+    margin-bottom: 24px;
+  }
+
+  label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    background-color: #1e2139;
+    color: #fff;
+    border-radius: 4px;
+    padding: 12px 4px;
+    border: none;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}

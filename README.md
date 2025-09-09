@@ -1,59 +1,55 @@
-# AngularInvoicesManagement
+# Invoices Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+A modern web application for managing invoices, built with **Angular** and **TypeScript**.  
+It allows users to create, edit, delete, and track invoices with a clean and structured UI.
 
-## Development server
+## Table of Contents
 
-To start a local development server, run:
+- [Live URL](#live-url)
+- [Description](#description)
+- [Tech Stack](#tech-stack)
+- [Run the Development Server](#run-the-development-server)
+
+
+---
+
+### Live URL
+
+🌍 [https://angular-invoices-management.vercel.app/](https://angular-invoices-management.vercel.app/)
+
+---
+
+### Description
+
+The **Invoices Management App** helps users keep track of invoices easily.  
+
+Users can:
+
+- View all invoices and specific invoice details in a desktop-optimized layout.
+- Create new invoices with details such as client, items, and payment terms.
+- Edit existing invoices.
+- Delete invoices.
+- Mark invoices as **Paid**, **Pending**, or **Draft**.
+- Automatically calculate totals based on item quantity and price.
+- Get success/error notifications via toast messages.
+
+⚠️ **Note**: The app is designed for **desktop use only** and is not optimized for mobile devices.
+
+---
+
+### Tech Stack
+
+- **Angular**
+- **TypeScript**
+- **RxJS & Signals**
+- **Angular Material**
+- **SCSS**
+- **Firebase**
+- **UID**
+
+---
+
+### Run the Development Server
 
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+npm start
